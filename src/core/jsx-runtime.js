@@ -1,52 +1,23 @@
-// "use strict";
+function jsx(tag, { children, ...other }) {
 
-// var Renderer = require('./runtime/renderer');
-// var Interpreter = require('./runtime/interpreter');
-// var renderers = {};
+    console.log(tag)
+    console.log(children)
+    console.log(other)
 
-// var jsx = {
-//   register: function registerRenderer(name, config) {
-//     name = name.toLowerCase();
+    if (typeof tag == 'function') {
 
-//     var interpreter = new Interpreter(name, config.tags);
-//     var renderer = new Renderer(interpreter, {
-//       before: config.before,
-//       after: config.after,
-//       process: config.process
-//     });
+        return tag({ children, ...other });
 
-//     renderers[name] = renderer;
-//     return renderer;
-//   },
-
-//   render: function renderJSXTree(tree, renderer) {
-//     renderer = renderer.toLowerCase();
-//     renderer = renderer && renderers[renderer];
-
-//     if (!renderer) {
-//       throw new Error('Renderer [' + renderer + '] not found');
-//     }
-
-//     return renderer.render(tree);
-//   }
-// };
-
-// module.exports = jsx;
-
-module.exports.jsx = (tag, { children, ...other }) => {
+    }
 
     if (tag == undefined || tag == "") return children;
     if (children == undefined) return `<${tag} />`;
     
-    return `<${tag}>${children}</${tag}>`;
+    const childString = (Array.isArray(children)) ? children.join('') : children;
 
-};
+    return `<${tag}>${childString}</${tag}>`;
 
-module.exports.jsxs = (tag, { children, ...other }) => {
+}
 
-    if (tag == undefined || tag == "") return children.join('');
-    if (children == undefined) return `<${tag} />`;
-
-    return `<${tag}>${children.join('')}</${tag}>`
-
-};
+module.exports.jsx = jsx;
+module.exports.jsxs = jsx;

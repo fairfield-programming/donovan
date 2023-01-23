@@ -4,18 +4,30 @@ const BabelJSX = require('@babel/preset-react')
 const metadataToHead = require('../utility/metadataToHead.js');
 
 const vm = require('node:vm');
+const fs = require('fs');
+const path = require('path');
 
 const contextObject = { 
     require: (name) => {
 
         if (name == 'donovan/jsx-runtime') return require('../core/jsx-runtime.js')
-        return require(name)
+        if (!name.startsWith('.') && !name.startsWith('/')) return require(name)
+
+        return getPageModuleFromPath(path.join(process.cwd(), 'template', name)).module.exports
 
     },
     module: {},
+    exports: {},
     project: global.project,
     console
 };
+
+function getPageModuleFromPath(path) {
+
+    const contents = fs.readFileSync(path, 'utf-8');
+    return getPageModule(contents);
+
+}
 
 function getPageModule(contents) {
 
