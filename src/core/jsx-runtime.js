@@ -1,21 +1,29 @@
-function jsx(tag, { children, ...other }) {
+function renderAttribute(key, value) {
 
-    console.log(tag)
-    console.log(children)
-    console.log(other)
+    return `${key}="${value}"`;
+
+}
+
+function renderAttributes(attributes) {
+
+    return Object.keys(attributes).map(i => renderAttribute(i, attributes[i]))
+
+}
+
+function jsx(tag, { children, ...attributes }) {
 
     if (typeof tag == 'function') {
 
-        return tag({ children, ...other });
+        return tag({ children, ...attributes });
 
     }
 
     if (tag == undefined || tag == "") return children;
-    if (children == undefined) return `<${tag} />`;
+    if (children == undefined) return `<${tag} ${renderAttributes(attributes)} />`;
     
     const childString = (Array.isArray(children)) ? children.join('') : children;
 
-    return `<${tag}>${childString}</${tag}>`;
+    return `<${tag} ${renderAttributes(attributes)}>${childString}</${tag}>`;
 
 }
 
