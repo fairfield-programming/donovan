@@ -64,3 +64,10 @@ Sometimes, people want a bit more control over their setups. We built Donovan fo
     ]
 }
 ```
+
+## Contributing 
+
+1. Please make sure that you understand the project and its code before contributing to it. We want to make sure that all submissions are high quality, and work well with the project. This will help us maintain the longevity of the project. 
+2. If you are submitting code in response to an Issue, please make sure that you understand what the issue is saying. It's perfectly fine to ask a few questions about what the issue means or is trying to accomplish.
+3. The FPA is a strong believer in the idea that kindness makes the world go around. Because of this, we ask that you refrain from using foul language, saying rude comments, or being a mean person in general. If you're wondering if you should say it, ask yourself, "would I say it to a ten-year-old version of myself?"
+4. If you're contribution got rejected– don't worry! Tons of awesome things get rejected, but here are some suggestions. We always attach a note when we close a pull request– maybe it's great code but doesn't do what intended, maybe there are a few more changes to be made before it's ready, or maybe it's just not the direction we're taking the project right now. But, in any case, if at first you don't succeed, try, try again. 
