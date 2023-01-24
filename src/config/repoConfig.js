@@ -24,6 +24,18 @@ function findReadmeContents() {
 
 }
 
+function findLicenseContents() {
+
+    const filePaths = fs.readdirSync(process.cwd())
+    const readmePaths = filePaths.filter(i => i.toLowerCase().startsWith('license')).sort((a, b) => a.length - b.length)
+    const readmePath = readmePaths[0]
+
+    if (readmePath == undefined) return "";
+
+    return fs.readFileSync(readmePath, 'utf-8');
+
+}
+
 function getRemoteUrls() {
 
     try {
@@ -42,6 +54,8 @@ async function defaultRepoConfig() {
 
     const readmeContents = findReadmeContents();
     const readmeAST = marked.lexer(readmeContents);
+
+    const licenseContents = findLicenseContents();
     
     const remoteUrl = getRemoteUrls()[0] || "";
     let repoName = "";
@@ -68,7 +82,8 @@ async function defaultRepoConfig() {
             website: repoInfo?.owner?.html_url || "",
             github: repoInfo?.owner?.login || ""
         },
-        langs: []
+        langs: [],
+        license: licenseContents || ""
     };
 
 }
@@ -86,6 +101,7 @@ async function cleanRepoConfig(config) {
         "template": config.template || _default.template,
         "owner": config.owner || _default.owner,
         "langs": config.langs.map(e => e.toLowerCase()) || _default.langs,
+        "license": config.license || _default.license
     };
 
 }

@@ -1,6 +1,6 @@
 {
   "name": "donovan",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "A single-command documentation generator with jsx-templates, support for every programming language, and modern design features.",
   "main": "src/index.js",
   "scripts": {
