@@ -11,6 +11,7 @@ const contextObject = {
     require: (name) => {
 
         if (name == 'donovan/jsx-runtime') return require('../core/jsx-runtime.js')
+        if (name == 'donovan') return require('../core/index.js')
         if (!name.startsWith('.') && !name.startsWith('/')) return require(name)
 
         return getPageModuleFromPath(path.join(process.cwd(), 'template', name)).module.exports
@@ -37,7 +38,7 @@ function getPageModule(contents) {
 
     vm.createContext(contextObject);
     vm.runInContext(output, contextObject);
-
+    
     return contextObject;
 
 }
@@ -50,7 +51,7 @@ function getPageHtml(pageModule) {
 
     const headData = headFunction() || metadataToHead(metadataFunction()) || "";
 
-    return `<!doctype html><html><head>${headData}</head><body>${bodyFunction()}</body></html>`;
+    return `<!doctype html><html><head>${headData}</head><body>${bodyFunction()}<script>${pageModule?.module?.scriptBits}</script></body></html>`;
 
 }
 

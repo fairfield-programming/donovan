@@ -1,14 +1,14 @@
-export default (type, args, ...children) => {
+function addScriptBit(data) {
 
-    let attributes = Object.keys(args || {}).map(i => {
-
-        const value = args[i]
-        return `${i}="${value}"`
-
-    })
-
-    if (attributes != "") attributes = " " + attributes;
-
-    return `<${type}${attributes}>${children.join('')}</${type}>`
+    if (global.scriptBits == undefined) global.scriptBits = [];
+    global.scriptBits.push(data);
 
 }
+
+function useState(initial) {
+
+    addScriptBit(`console.log("This is a test");`);
+
+}
+
+module.exports = useState;

@@ -50,10 +50,36 @@ function getRemoteUrls() {
 
 }
 
+function cleanMarkdownAST(item) {
+
+    if (item.depth == 1) return undefined;
+    if (item.depth == 2) return undefined;
+
+    return {
+        type: item.type,
+        depth: item.depth,
+        text: item.text
+    }
+
+}
+
 async function defaultRepoConfig() {
 
     const readmeContents = findReadmeContents();
     const readmeAST = marked.lexer(readmeContents);
+    let curHeading = "";
+    const outputAST = {};
+
+    readmeAST.forEach((item, i) => {
+
+        if (item.type == 'heading' && item.depth == 2) curHeading = item.text.toLowerCase();
+        if (curHeading == "") return;
+
+        if (outputAST[curHeading] == undefined) outputAST[curHeading] = [];
+        
+        if (item.type == 'heading' || item.type == 'paragraph') outputAST[curHeading].push(...[cleanMarkdownAST(item)].filter(item => item));
+
+    }) 
 
     const licenseContents = findLicenseContents();
     
@@ -74,7 +100,7 @@ async function defaultRepoConfig() {
     const repoInfo = await repoRequestInfo.json();
 
     return {
-        name:  findRootName(),
+        name: repoInfo?.name || findRootName() || "Unnamed Project",
         description: repoInfo?.description || "This is a really simple description for a project.",
         template: "https://github.com/fairfield-programming/donovan-spacey",
         owner: {
@@ -82,8 +108,9 @@ async function defaultRepoConfig() {
             website: repoInfo?.owner?.html_url || "",
             github: repoInfo?.owner?.login || ""
         },
+        sections: outputAST,
         langs: [],
-        license: licenseContents || ""
+        license: licenseContents || "Unlicensed"
     };
 
 }
@@ -101,7 +128,8 @@ async function cleanRepoConfig(config) {
         "template": config.template || _default.template,
         "owner": config.owner || _default.owner,
         "langs": config.langs.map(e => e.toLowerCase()) || _default.langs,
-        "license": config.license || _default.license
+        "license": config.license || _default.license,
+        "sections": config.sections || _default.sections
     };
 
 }
