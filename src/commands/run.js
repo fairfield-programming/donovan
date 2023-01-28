@@ -7,7 +7,7 @@ const path = require('path');
 
 global.templateDir = path.join(process.cwd(), "template");
 
-function run() {
+function run({ args, flags }) {
 
     (async() => {
 

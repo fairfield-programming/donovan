@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-function run(parameters, flags) {
+function run({ args, flags }) {
 
     const commandsPath = path.join(__dirname);
     const commandFiles = fs.readdirSync(commandsPath);

@@ -26,6 +26,6 @@ if (args.length == 0) {
 
     }
 
-    require(fullPath).run();
+    require(fullPath).run({ args, flags });
 
 }
