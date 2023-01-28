@@ -1,39 +1,31 @@
 #!/usr/bin/env node
 
-const { findRepoConfig, createBabelConfig, createNPMConfig, installDependencies } = require('./config/index.js');
-const { downloadFromGitUrl, cleanupAfterTemplate } = require('./template/download.js');
-const runTemplate = require('./generator/index.js');
-const { checkFlag } = require('./flags/checkFlag.js');
-
 const fs = require('fs');
 const path = require('path');
+const parseCommandInput = require('./utility/parseCommandInput.js');
 
-global.templateDir = path.join(process.cwd(), "template");
+const { args, flags } = parseCommandInput.parseToFlagsAndArgs(
+                            parseCommandInput.argsAsString()
+                        )
 
-(async() => {
+if (args.length == 0) {
 
-    try {
+    // If no arguments, run the system
+    require('./commands/run.js').run();
 
-        if (process.argv.length > 2) {
-            console.log("Checking Flags " + process.argv[2] + "...");
-            checkFlag(process.argv[2]);
-        } else {
-            const config = await findRepoConfig();
-            global = {...global, project: config };
+} else {
 
-            console.log("Downloading Template from Git Url...");
-            await downloadFromGitUrl(global.project.template);
-            console.log("Generating Pages from Template...");
-            await runTemplate();
-            console.log("Cleaning Up Leftover Assets...");
-            await cleanupAfterTemplate();
-        }
+    // If argument exists, run that
+    const commandPath = `./commands/${args[0]}.js`;
+    const fullPath = path.join(__dirname, commandPath)
 
-    } catch (e) {
+    if (!fs.existsSync(fullPath)) {
 
-        console.log(e);
-        process.exit(1);
+        console.log("There is no such command, '" + args[0] + "'. Please run `donovan help` for a list of available commands.")
+        process.exit(-1);
 
-    };
+    }
 
-})()
+    require(fullPath).run();
+
+}
