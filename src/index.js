@@ -11,7 +11,7 @@ const { args, flags } = parseCommandInput.parseToFlagsAndArgs(
 if (args.length == 0) {
 
     // If no arguments, run the system
-    require('./commands/run.js').run();
+    require('./commands/run.js').run({ });
 
 } else {
 
