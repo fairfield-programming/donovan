@@ -29,8 +29,11 @@ function getPagesFromTemplate() {
 function pathToHTMLPath(path) {
 
     const parts = path.split('.')
+    const url = parts.slice(0, -1).join();
 
-    return parts.slice(0, -1) + '.html'
+    if (url.endsWith('index')) return [ url + '.html' ]
+
+    return [ url + '.html', url + '/index.html' ]
 
 }
 
@@ -46,7 +49,13 @@ function getPageContentsFromTemplate() {
 
         const pageHtml = getPageHtml(pageModule);
 
-        output[pathToHTMLPath(i)] = pageHtml;
+        const generatedPaths = pathToHTMLPath(i);
+
+        generatedPaths.forEach(path => {
+
+            output[path] = pageHtml;
+
+        })
 
     });
 
