@@ -1,6 +1,9 @@
 const fs = require('fs');
 const pkg = require('../../package.json');
 const path = require("path");
+const { findRepoConfig } = require('../config');
+
+global.templateDir = path.join(process.cwd(), "template");
 
 function getHelpMenu() {
     console.log('====================================');
@@ -20,10 +23,28 @@ function getVersionInfo() {
     console.log(pkg.version);
 };
 
-function generateConfig() {
+async function generateConfig() {
     console.log("Generating Config File...");
 
     //code to generate config file
+    const config = await findRepoConfig();
+    writeConfig(config);
+};
+
+function writeConfig(config) {
+    if (!fs.existsSync(process.cwd().toString() + '/.github')) {
+        fs.mkdirSync(process.cwd().toString() + '/.github');
+        console.log("Github Directory Created");
+    } else {
+        console.log("Github Directory Already Exists");
+    }
+
+    if (!fs.existsSync(process.cwd().toString() + '/.github/donovan.json')) {
+        fs.writeFileSync(process.cwd().toString() + '/.github/donovan.json', JSON.stringify(config, null, '\n'));
+        console.log("Config file Created");
+    } else {
+        console.log("Config file Already Exists");
+    }
 };
 
 async function removePublicAndTemplate() {
