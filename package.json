@@ -4,7 +4,8 @@
   "description": "A single-command documentation generator with jsx-templates, support for every programming language, and modern design features.",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "test": "echo No Test Suite Yet."
   },
   "bin": {
     "donovan": "src/index.js"
