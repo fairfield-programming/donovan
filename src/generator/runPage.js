@@ -7,38 +7,59 @@ const vm = require('node:vm');
 const fs = require('fs');
 const path = require('path');
 
-const contextObject = { 
-    require: (name) => {
+function importCssFile(name) {
 
-        if (name == 'donovan/jsx-runtime') return require('../core/jsx-runtime.js')
-        if (name == 'donovan') return require('../core/index.js')
-        if (!name.startsWith('.') && !name.startsWith('/')) return require(name)
+    const contents = fs.readFileSync(name, 'utf-8');
 
-        return getPageModuleFromPath(path.join(process.cwd(), 'template', name)).module.exports
+    fs.writeFileSync(path.join(process.cwd(), 'public', `${'3fF7F52AaVf3'}.css`), contents);
+   
+}
 
-    },
+let contextObject = { 
     module: {},
     exports: {},
-    project: global.project,
+    global: {},
     console
 };
 
-function getPageModuleFromPath(path) {
+function getPageModuleFromPath(currentPath) {
 
-    const contents = fs.readFileSync(path, 'utf-8');
-    return getPageModule(contents);
+    const contents = fs.readFileSync(currentPath, 'utf-8');
+    return getPageModule(contents, currentPath);
 
 }
 
-function getPageModule(contents) {
+function getPageModule(contents, currentPath) {
 
     var output = Babel.transform(contents, { presets: ["env", [ BabelJSX, { runtime: "automatic", importSource: "donovan" } ]] }).code;
 
-    contextObject.project = global.project;
+    contextObject = {
+        ...contextObject,
+        project: global.project,
+        require: (name) => {
+
+            const currentModulePath = currentPath
+    
+            if (name == 'donovan/jsx-runtime') return require('../core/jsx-runtime.js')
+            if (name == 'donovan') return require('../core/index.js')
+            if (!name.startsWith('.') && !name.startsWith('/')) return require(name)
+    
+            const extension = path.extname(name).slice(1)
+            
+            if (extension == 'jsx')
+                return getPageModuleFromPath(path.join(process.cwd(), 'template', name)).module.exports
+    
+            if (extension == 'css')
+                return importCssFile(path.join(currentModulePath, '../', name))
+    
+            return null
+    
+        },
+    };
 
     vm.createContext(contextObject);
     vm.runInContext(output, contextObject);
-    
+
     return contextObject;
 
 }
@@ -51,7 +72,7 @@ function getPageHtml(pageModule) {
 
     const headData = headFunction() || metadataToHead(metadataFunction()) || "";
 
-    return `<!doctype html><html><head>${headData}</head><body>${bodyFunction()}<script>${pageModule?.module?.scriptBits}</script></body></html>`;
+    return `<!doctype html><html><head>${headData}</head><body>${bodyFunction()}</body></html>`;
 
 }
 

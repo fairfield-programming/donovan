@@ -45,7 +45,7 @@ function getPageContentsFromTemplate() {
     paths.forEach((i) => {
 
         const pageContents = fs.readFileSync(path.join(global.templateDir, "src/pages", i));
-        const pageModule = getPageModule(pageContents);
+        const pageModule = getPageModule(pageContents, path.join(global.templateDir, "src/pages", i));
 
         const pageHtml = getPageHtml(pageModule);
 

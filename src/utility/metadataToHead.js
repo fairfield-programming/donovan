@@ -1,7 +1,13 @@
 const { escapeAttribute } = require('../core/jsx-runtime.js')
 
 const presets = {
-    
+    "_": (value) => {
+
+        return [
+            `<meta name="viewport" content="width=device-width, initial-scale=1" />`
+        ];
+
+    },
     "title": (value) => {
 
         return [
@@ -13,7 +19,8 @@ const presets = {
     "description": (value) => {
 
         return [
-            `<meta property="og:description" content="${escapeAttribute(value)}" />`
+            `<meta property="og:description" content="${escapeAttribute(value)}" />`,
+            `<meta name='description' content='${escapeAttribute(value)}'>`
         ];
 
     }
@@ -22,6 +29,8 @@ const presets = {
 module.exports = (metadata) => {
 
     if (metadata == undefined) return undefined;
+
+    metadata["_"] = "";
 
     return Object.keys(metadata).map(key => {
 

@@ -1,6 +1,9 @@
 const fs = require('fs')
 const path = require('path')
 
+const { generateRobotTxt } = require('./robots.js');
+const { generateSitemaps } = require('./sitemap.js');
+
 const {
     getFilesRecursively,
     getPageContentsFromTemplate,
@@ -22,6 +25,9 @@ function run() {
         fs.writeFileSync(totalPath, all[i]);
 
     })
+
+    generateRobotTxt();
+    generateSitemaps(all);
 
 }
 
