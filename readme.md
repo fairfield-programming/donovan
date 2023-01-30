@@ -1,6 +1,10 @@
 # [![Donovan](https://github.com/fairfield-programming/donovan/blob/master/.github/media/cover.png?raw=true)](https://github.com/fairfield-programming/donovan)
 
-A documentation generator for smart and lazy people.
+[![NPM Version](https://img.shields.io/npm/v/donovan)](https://www.npmjs.com/package/donovan)
+[![License](https://img.shields.io/npm/l/donovan)](https://github.com/fairfield-programming/donovan/blob/master/license.md)
+[![Snyk Vulnerabilities for npm package](https://img.shields.io/snyk/vulnerabilities/npm/donovan)](https://www.npmjs.com/package/donovan)
+[![GitHub contributors](https://img.shields.io/github/contributors/fairfield-programming/donovan)](https://github.com/fairfield-programming/donovan/graphs/contributors)
+[![GitHub Repo stars](https://img.shields.io/github/stars/fairfield-programming/donovan)](https://github.com/fairfield-programming/donovan)
 
 ## Usage
 
