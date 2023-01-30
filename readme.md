@@ -51,22 +51,14 @@ jobs:
 
 ### Configuring Your Setup
 
-Sometimes, people want a bit more control over their setups. We built Donovan for you too! And, we built it for those developers who want clean directories. To get additional customization, just add a file called `donovan.json` in your `.github` folder. If you want an example `.github/donovan.json` file, this is the one that [libiii](https://github.com/fairfield-programming/libiii) uses.
+Sometimes, people want a bit more control over their setups– so Donovan allows for that! We also built it for those developers who want clean directories– there's only one file and its hidden in the `.github` directory. 
 
-```json
-{
-    "name": "libiii",
-    "description": "An embeddable library for the Interpolated Image Interchange format.",
-    "template": "https://github.com/fairfield-programming/donovan-spacey",
-    "owner": {
-        "name": "The Fairfield Programming Association Inc.",
-        "website": "https://fairfieldprogramming.org",
-        "github": "fairfield-programming"
-    },
-    "langs": [
-        "C"
-    ]
-}
+So, To enable additional customization, just add a file called `donovan.json` in your `.github` folder. If you want an example `.github/donovan.json` file, this is the one that [libiii](https://github.com/fairfield-programming/libiii) uses.
+
+To make the process even simpler, you can run the below command and it will scan your repository for the available information it can find like contributors, licenses, and chunks of text. Once there, you can edit the configuration– all with JSON Schema, enabling auto-filling, verification, and clarity.
+
+```bash
+npx donovan init
 ```
 
 ## Contributing
