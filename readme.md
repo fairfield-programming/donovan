@@ -1,4 +1,4 @@
-# Donovan
+# [![Donovan](https://github.com/fairfield-programming/donovan/blob/master/.github/media/cover.png?raw=true)](https://github.com/fairfield-programming/donovan)
 
 A documentation generator for smart and lazy people.
 
