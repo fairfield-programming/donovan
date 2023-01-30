@@ -1,0 +1,302 @@
+{
+    "$schema": "../src/language-schema.json",
+    "name": "C Lang",
+    "fileTypes": [
+        "c",
+        "h"
+    ],
+    "description": "The C programming language is a procedural and general-purpose language that provides low-level access to system memory.",
+    "emoji": "🍺",
+    "syntax": {
+        "tokens": {
+            "symbols": [
+                {
+                    "activator": "+",
+                    "name": "Addition",
+                    "group": "operator"
+                },
+                {
+                    "activator": "-",
+                    "name": "Subtraction",
+                    "group": "operator"
+                },
+                {
+                    "activator": "*",
+                    "name": "Multiplication",
+                    "group": "operator"
+                },
+                {
+                    "activator": "/",
+                    "name": "Division",
+                    "group": "operator"
+                },
+                {
+                    "activator": "%",
+                    "name": "Modulus",
+                    "group": "operator"
+                },
+                {
+                    "activator": "--",
+                    "name": "Unary Decrement",
+                    "group": "operator"
+                },
+                {
+                    "activator": "++",
+                    "name": "Unary Increment",
+                    "group": "operator"
+                },
+                {
+                    "activator": "!",
+                    "name": "Unary Not",
+                    "group": "operator"
+                },
+                {
+                    "activator": ",",
+                    "name": "Parameter Delimiter",
+                    "group": "operator"
+                },
+                {
+                    "activator": "=",
+                    "name": "Assignment",
+                    "group": "operator"
+                },
+                {
+                    "activator": "<",
+                    "name": "Less Than",
+                    "group": "operator"
+                },
+                {
+                    "activator": ">",
+                    "name": "Greater Than",
+                    "group": "operator"
+                },
+                {
+                    "activator": "==",
+                    "name": "Equal To",
+                    "group": "operator"
+                },
+                {
+                    "activator": ">=",
+                    "name": "Greater Than or Equal To",
+                    "group": "operator"
+                },
+                {
+                    "activator": "<=",
+                    "name": "Less Than or Equal To",
+                    "group": "operator"
+                },
+                {
+                    "activator": "!=",
+                    "name": "Not Equal To",
+                    "group": "operator"
+                },
+                {
+                    "activator": "(",
+                    "name": "Start Param"
+                },
+                {
+                    "activator": ")",
+                    "name": "End Param"
+                },
+                {
+                    "activator": "{",
+                    "name": "Start Scope"
+                },
+                {
+                    "activator": "}",
+                    "name": "End Scope"
+                },
+                {
+                    "activator": "[",
+                    "name": "Start Array"
+                },
+                {
+                    "activator": "]",
+                    "name": "End Array"
+                }
+            ],
+            "keywords": [
+                {
+                    "activator": "alignas"
+                },
+                {
+                    "activator": "alignof"
+                },
+                {
+                    "activator": "auto"
+                },
+                {
+                    "activator": "bool"
+                },
+                {
+                    "activator": "break"
+                },
+                {
+                    "activator": "case"
+                },
+                {
+                    "activator": "char"
+                },
+                {
+                    "activator": "const"
+                },
+                {
+                    "activator": "constexpr"
+                },
+                {
+                    "activator": "continue"
+                },
+                {
+                    "activator": "default"
+                },
+                {
+                    "activator": "do"
+                },
+                {
+                    "activator": "double"
+                },
+                {
+                    "activator": "else"
+                },
+                {
+                    "activator": "enum"
+                },
+                {
+                    "activator": "extern"
+                },
+                {
+                    "activator": "false"
+                },
+                {
+                    "activator": "float"
+                },
+                {
+                    "activator": "for"
+                },
+                {
+                    "activator": "goto"
+                },
+                {
+                    "activator": "if"
+                },
+                {
+                    "activator": "inline"
+                },
+                {
+                    "activator": "int"
+                },
+                {
+                    "activator": "long"
+                },
+                {
+                    "activator": "nullptr"
+                },
+                {
+                    "activator": "register"
+                },
+                {
+                    "activator": "restrict"
+                },
+                {
+                    "activator": "return"
+                },
+                {
+                    "activator": "else"
+                },
+                {
+                    "activator": "short"
+                },
+                {
+                    "activator": "signed"
+                },
+                {
+                    "activator": "sizeof"
+                },
+                {
+                    "activator": "static"
+                },
+                {
+                    "activator": "static_assert"
+                },
+                {
+                    "activator": "struct"
+                },
+                {
+                    "activator": "switch"
+                },
+                {
+                    "activator": "thread_local"
+                },
+                {
+                    "activator": "true"
+                },
+                {
+                    "activator": "typedef"
+                },
+                {
+                    "activator": "typeof"
+                },
+                {
+                    "activator": "typeof_unqual"
+                },
+                {
+                    "activator": "union"
+                },
+                {
+                    "activator": "unsigned"
+                },
+                {
+                    "activator": "void"
+                },
+                {
+                    "activator": "volatile"
+                },
+                {
+                    "activator": "while"
+                },
+                {
+                    "activator": "_Alignas"
+                },
+                {
+                    "activator": "_Alignof"
+                },
+                {
+                    "activator": "_Atomic"
+                },
+                {
+                    "activator": "_BitInt"
+                },
+                {
+                    "activator": "_Bool"
+                },
+                {
+                    "activator": "_Complex"
+                },
+                {
+                    "activator": "_Decimal128"
+                },
+                {
+                    "activator": "_Decimal32"
+                },
+                {
+                    "activator": "_Decimal64"
+                },
+                {
+                    "activator": "_Generic"
+                },
+                {
+                    "activator": "_Imaginary"
+                },
+                {
+                    "activator": "_Noreturn"
+                },
+                {
+                    "activator": "_Static_assert"
+                },
+                {
+                    "activator": "_Thread_local"
+                }
+            ]
+        }
+    }
+}

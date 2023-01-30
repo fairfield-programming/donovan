@@ -1,0 +1,10 @@
+{
+    "$schema": "../src/language-schema.json",
+    "name": "JavaScript",
+    "fileTypes": [
+        "js"
+    ],
+    "description": "JavaScript is a lightweight, interpreted, or just-in-time compiled programming language with first-class functions.",
+    "emoji": "🧉",
+    "syntax": {}
+}

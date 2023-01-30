@@ -1,0 +1,207 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://fairfieldprogramming.org/irishman.schema.json",
+    "title": "Irishman Language Schema",
+    "description": "An easy way to define programming languages.",
+    "type": "object",
+    "properties": {
+        "name": {
+            "description": "The formal name of a programming language.",
+            "type": "string",
+            "default": "Example"
+        },
+        "description": {
+            "description": "A description of the programming language in around 250 characters.",
+            "type": "string",
+            "default": "Example language was built by Evil Corp to accomplish X, Y, and Z."
+        },
+        "emoji": {
+            "description": "An emoji that embodies the languages personality.",
+            "maxLength": 2,
+            "minLength": 1,
+            "type": "string",
+            "default": "🙂"
+        },
+        "syntax": {
+            "properties": {
+                "tree": {
+                    "properties": {
+                        "patterns": {
+                            "description": "A collection of tokens organized by certain patterns.",
+                            "type": "array",
+                            "items": {
+                                "required": [
+                                    "id",
+                                    "name"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "description": "The id of the object in the Abstract Syntax Tree (allows referencing by other objects).",
+                                        "type": "string",
+                                        "default": "FUNCTION_DECLARATION",
+                                        "pattern": "^[A-Z_]*$"
+                                    },
+                                    "name": {
+                                        "description": "The type of object in the Abstract Syntax Tree.",
+                                        "type": "string",
+                                        "default": "Function Declaration",
+                                        "pattern": "^[a-zA-Z ]*$"
+                                    },
+                                    "description": {
+                                        "description": "The description for the object in the Abstract Syntax Tree.",
+                                        "type": "string",
+                                        "default": "This is a description for an object in the Abstract Syntax Tree."
+                                    },
+                                    "match": {
+                                        "type": "array",
+                                        "description": "A match that compares other objects for the object in the Abstract Syntax Tree.",
+                                        "items": {
+                                            "type": "string",
+                                            "description": "One token in the matching sequence."
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "repository": {}
+                    }
+                },
+                "tokens": {
+                    "properties": {
+                        "keywords": {
+                            "type": "array",
+                            "uniqueItems": true,
+                            "items": {
+                                "type": "object",
+                                "description": "A keyword (grouping of characters) within this language.",
+                                "properties": {
+                                    "activator": {
+                                        "description": "The actual data contained in the token.",
+                                        "type": "string",
+                                        "default": "const",
+                                        "pattern": "^[a-zA-Z _]*$"
+                                    },
+                                    "group": {
+                                        "type": "string",
+                                        "description": "This is the logical grouping of the token. In other words, what is it used for?",
+                                        "enum": [
+                                            "none",
+                                            "comment",
+                                            "identifier",
+                                            "number",
+                                            "constant",
+                                            "control",
+                                            "string",
+                                            "operator"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "symbols": {
+                            "type": "array",
+                            "uniqueItems": true,
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "description": "The name of the token unofficially (uses normal name formatting).",
+                                        "type": "string",
+                                        "default": "Greater than or equals",
+                                        "pattern": "^[a-zA-Z _]*$"
+                                    },
+                                    "activator": {
+                                        "description": "The actual data contained in the token.",
+                                        "type": "string",
+                                        "default": ">="
+                                    },
+                                    "group": {
+                                        "type": "string",
+                                        "description": "This is the logical grouping of the token. In other words, what is it used for?",
+                                        "enum": [
+                                            "none",
+                                            "comment",
+                                            "identifier",
+                                            "number",
+                                            "constant",
+                                            "control",
+                                            "string",
+                                            "operator"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "spans": {
+                            "type": "array",
+                            "uniqueItems": true,
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "description": "The name of the token unofficially (uses normal name formatting).",
+                                        "type": "string",
+                                        "default": "Block Comment",
+                                        "pattern": "^[a-zA-Z _]*$"
+                                    },
+                                    "start": {
+                                        "description": "The starting characters of a span.",
+                                        "type": "string",
+                                        "default": "/*"
+                                    },
+                                    "end": {
+                                        "description": "The ending characters of a span.",
+                                        "type": "string",
+                                        "default": "*/"
+                                    },
+                                    "initiator": {
+                                        "description": "A regex sequence that triggers a span token.",
+                                        "type": "string",
+                                        "default": "[a-zA-Z_]"
+                                    },
+                                    "conditional": {
+                                        "description": "A regex sequence that, as long as its satisfied, continues the processing of the span token.",
+                                        "type": "string",
+                                        "default": "[0-9a-zA-Z_]"
+                                    },
+                                    "group": {
+                                        "type": "string",
+                                        "description": "This is the logical grouping of the token. In other words, what is it used for?",
+                                        "enum": [
+                                            "none",
+                                            "comment",
+                                            "identifier",
+                                            "number",
+                                            "constant",
+                                            "control",
+                                            "string",
+                                            "operator"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "description": "A collection of all tokens built into the programming language.",
+                    "type": "object"
+                }
+            },
+            "description": "The syntax of the programming language.",
+            "type": "object"
+        },
+        "fileTypes": {
+            "description": "All the possible file endings for programs written in this language (all the characters after the period).",
+            "type": "array",
+            "items": {
+                "description": "A file ending for programs written in this language (all the characters after the period).",
+                "type": "string",
+                "default": "ex"
+            }
+        }
+    },
+    "required": [
+        "name",
+        "description",
+        "emoji"
+    ]
+}
