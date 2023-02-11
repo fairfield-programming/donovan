@@ -3,11 +3,11 @@ const fs = require('fs');
 const path = require('path');
 
 //absolute path to public folder
-const publicPath = path.resolve(process.cwd(), './public');
+const publicPath = path.resolve(process.cwd(), './public/tailwind');
 
 function installTailwind() {
     if (!fs.existsSync(publicPath)) {
-        console.log("Creating public directory...");
+        console.log("Creating tailwind directory...");
         fs.mkdirSync(publicPath);
     }
 }

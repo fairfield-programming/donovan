@@ -20,11 +20,11 @@ function run({ args, flags }) {
             console.log("Downloading Template from Git Url...");
             await downloadFromGitUrl(global.project.template);
 
+            console.log("Generating Pages from Template...");
+            await runTemplate();
+
             console.log("Creating Tailwind Config...");
             await generateTailwind();
-
-            // console.log("Generating Pages from Template...");
-            // await runTemplate();
 
             console.log("Cleaning Up Leftover Assets...");
             await cleanupAfterTemplate();
