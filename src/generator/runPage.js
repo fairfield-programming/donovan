@@ -49,8 +49,11 @@ function getPageModule(contents, currentPath) {
             if (extension == 'jsx')
                 return getPageModuleFromPath(path.join(process.cwd(), 'template', name)).module.exports
     
-            if (extension == 'css')
-                return importCssFile(path.join(currentModulePath, '../', name))
+            if (extension == 'css'){
+                console.log("Using CSS");
+                return null;
+            }
+                //return importCssFile(path.join(currentModulePath, '../', name))
     
             return null
     

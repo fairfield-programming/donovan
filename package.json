@@ -19,5 +19,8 @@
     "marked": "^4.2.12",
     "node-fetch": "^3.3.0",
     "node-fetch-commonjs": "^3.2.4"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.2.6"
   }
 }
