@@ -9,6 +9,7 @@ const {
     getPageContentsFromTemplate,
     getPagesFromTemplate
 } = require('./readPages.js');
+const { createTailwind } = require('./tailwind_generator.js');
 
 function run() {
 
@@ -17,7 +18,7 @@ function run() {
     };
 
     Object.keys(all).map(i => {
-        
+
         const totalPath = path.join(process.cwd(), "public", i);
 
         const dir = path.dirname(totalPath);
@@ -28,6 +29,7 @@ function run() {
 
     generateRobotTxt();
     generateSitemaps(all);
+    createTailwind();
 
 }
 
