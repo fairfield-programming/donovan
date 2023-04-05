@@ -1,7 +1,6 @@
 const { findRepoConfig, createBabelConfig, createNPMConfig, installDependencies } = require('../config/index.js');
 const { downloadFromGitUrl, cleanupAfterTemplate } = require('../template/download.js');
 const runTemplate = require('../generator/index.js');
-const { generateTailwind } = require('../styles/index.js');
 
 const fs = require('fs');
 const path = require('path');
@@ -23,11 +22,8 @@ function run({ args, flags }) {
             console.log("Generating Pages from Template...");
             await runTemplate();
 
-            console.log("Creating Tailwind Config...");
-            await generateTailwind();
-
-            console.log("Cleaning Up Leftover Assets...");
-            await cleanupAfterTemplate();
+            // console.log("Cleaning Up Leftover Assets...");
+            // await cleanupAfterTemplate();
 
         } catch (e) {
 
