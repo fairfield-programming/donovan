@@ -29,7 +29,7 @@ function run() {
 
     generateRobotTxt();
     generateSitemaps(all);
-    //createTailwind();
+    createTailwind();
 
 }
 
