@@ -22,8 +22,8 @@ function run({ args, flags }) {
             console.log("Generating Pages from Template...");
             await runTemplate();
 
-            // console.log("Cleaning Up Leftover Assets...");
-            // await cleanupAfterTemplate();
+            console.log("Cleaning Up Leftover Assets...");
+            await cleanupAfterTemplate();
 
         } catch (e) {
 
