@@ -7,14 +7,6 @@ const vm = require("node:vm");
 const fs = require("fs");
 const path = require("path");
 
-// function importCssFile(name) {
-
-//     const contents = fs.readFileSync(name, 'utf-8');
-
-//     fs.writeFileSync(path.join(process.cwd(), 'public', `${'3fF7F52AaVf3'}.css`), contents);
-
-// }
-
 let contextObject = {
   module: {},
   exports: {},
